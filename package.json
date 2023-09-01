@@ -1,0 +1,33 @@
+{
+  "name": "tmax",
+  "displayName": "Tmax",
+  "description": "Tmax toggles the terminal to a maximized view",
+  "version": "0.1.0",
+  "publisher": "avamsi",
+  "repository": "https://github.com/avamsi/vscode-tmax",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "tmax.toggle",
+        "title": "Tmax: Toggle"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "16.x",
+    "typescript": "^5.1.6"
+  }
+}
