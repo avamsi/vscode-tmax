@@ -32,6 +32,8 @@ async function toggle(workspaceState: vscode.Memento) {
 }
 
 export function activate(context: vscode.ExtensionContext) {
+  // Assume terminal is hidden when the extension is activated.
+  context.workspaceState.update("maximize", true);
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "tmax.toggle",
