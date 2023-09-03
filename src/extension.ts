@@ -1,7 +1,9 @@
 import * as vscode from "vscode";
 
+const MAXIMIZE = "tmax.maximize";
+
 async function toggle(workspaceState: vscode.Memento) {
-  if (workspaceState.get("maximize")) {
+  if (workspaceState.get(MAXIMIZE)) {
     await vscode.commands.executeCommand("workbench.action.closeSidebar");
     await vscode.commands.executeCommand(
       "workbench.action.toggleActivityBarVisibility",
@@ -14,7 +16,7 @@ async function toggle(workspaceState: vscode.Memento) {
     await vscode.commands.executeCommand(
       "workbench.action.toggleMaximizedPanel",
     );
-    workspaceState.update("maximize", false);
+    workspaceState.update(MAXIMIZE, false);
   } else {
     vscode.window.activeTerminal?.hide();
     await vscode.commands.executeCommand(
@@ -27,13 +29,13 @@ async function toggle(workspaceState: vscode.Memento) {
     await vscode.commands.executeCommand(
       "workbench.action.toggleSidebarVisibility",
     );
-    workspaceState.update("maximize", true);
+    workspaceState.update(MAXIMIZE, true);
   }
 }
 
 export function activate(context: vscode.ExtensionContext) {
   // Assume terminal is hidden when the extension is activated.
-  context.workspaceState.update("maximize", true);
+  context.workspaceState.update(MAXIMIZE, true);
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "tmax.toggle",
